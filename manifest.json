@@ -1,0 +1,13 @@
+{
+  "name": "Arc",
+  "description": "Check fusion data",
+  "version": "0.1",
+  "manifest_version": 3,
+  "action": {
+    "default_icon": "magnifying-glass.png",
+    "default_popup": "index.html"
+  },
+  "permissions": [
+    "tabs"
+  ]
+}
