@@ -1,5 +1,5 @@
 // send test message of the extension to the engine?
-window.postMessage({type: 'fusion-extension'})
+window.postMessage({ type: 'fusion-extension' })
 
 // input object with keys and values
 // saves each key and value individually to storage
@@ -31,7 +31,7 @@ function saveFusionData(fusionData) {
   chrome.storage.sync.set({ arcSite });
 
   // global content
-  const { 
+  const {
     globalContent,
     outputType,
     tree,
@@ -48,7 +48,7 @@ function saveFusionData(fusionData) {
 window.addEventListener("message", (event) => {
   // todo: this seems to be re-running multiple times in console
   // console.log('event listener added in content.js')
-  if (event.data.type === 'engine-msg'){
+  if (event.data.type === 'engine-msg') {
     saveFusionData(event.data)
   }
 }, false);
