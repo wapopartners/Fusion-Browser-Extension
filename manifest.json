@@ -12,8 +12,13 @@
   ],
   "content_scripts": [
     {
-      "matches": ["https://corecomponents.arcpublishing.com/*", "http://localhost/*"],
-      "js": ["content.js"]
+      "matches": [
+        "https://corecomponents.arcpublishing.com/*",
+        "http://localhost/*"
+      ],
+      "js": [
+        "content.js"
+      ]
     }
   ]
 }
