@@ -4,12 +4,14 @@
   "version": "0.1",
   "manifest_version": 3,
   "action": {
-    "default_icon": "magnifying-glass.png"
+    "default_icon": "magnifying-glass.png",
+    "default_popup": "popup.html"
   },
   "permissions": [
     "tabs",
     "activeTab",
-    "scripting"
+    "scripting",
+    "storage"
   ],
   "background": {
     "service_worker": "background.js"
