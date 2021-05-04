@@ -4,4 +4,10 @@
 (function() {
   console.log(window, 'window')
   console.log(window.Fusion)
+  window.postMessage({type: 'fusion-extension'})
+  window.addEventListener("message", (event) => {
+    if (event.data.type === 'engine-msg'){
+      console.log('received message from engine', event.data)
+    }
+  }, false);
 })();
