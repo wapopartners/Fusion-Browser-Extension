@@ -8,17 +8,11 @@
     "default_icon": "arcxp.png"
   },
   "permissions": [
-    "tabs",
-    "activeTab",
-    "scripting",
     "storage"
   ],
-  "background": {
-    "service_worker": "background.js"
-  },
   "content_scripts": [
     {
-      "matches": ["https://corecomponents.arcpublishing.com/*"],
+      "matches": ["https://corecomponents.arcpublishing.com/*", "http://localhost/*"],
       "js": ["content.js"]
     }
   ]
