@@ -44,7 +44,8 @@ const ALL_SAVED_KEYS = [
   "outputType"
 ]
 
-const fusionDataBlock = document.getElementById('fusion-data')
+const fusionDataBlock = document.getElementById('fusion-data');
+const allFusionDataBlock = document.getElementById('fusion-data-everything');
 
 function showFusionData() {
   chrome.storage.sync.get("arcSite", (data) => {
@@ -53,6 +54,7 @@ function showFusionData() {
   });
 
   chrome.storage.sync.get(ALL_SAVED_KEYS, (data) => {
+    allFusionDataBlock.innerHTML = JSON.stringify(data);
     console.log(data, 'data')
   })
 }
