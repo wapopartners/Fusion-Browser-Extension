@@ -8,19 +8,46 @@ import logo from './logo.svg';
 
 import './App.css';
 import getAllStorageSyncData from './utils/getAllStorageSyncData';
-import DataTable from './components/DataTable';
+import AllData from './components/AllData';
+
+const getKeysByObject = (inputObject: any, targetKeys: Array<String>) => {
+  if (inputObject === null) {
+    return {}
+  }
+
+  return Object.keys(inputObject).reduce((output: any, key: string) => {
+    if (targetKeys.includes(key)) {
+      output[key] = inputObject[key]
+    }
+    return output;
+  }, {})
+}
+
+const renderSection = (activeTab: string, allKeyValueData: any, status: string ) => {
+  switch (activeTab) {
+    case 'themes':
+      return <Themes data={getKeysByObject(allKeyValueData, ['blockDistTag'])} status={status} />
+    case 'docs':
+      return <Docs />
+    case 'alerts':
+      return <Alerts />
+    case 'all':
+      return <AllData data={allKeyValueData} status={status} />
+    case 'fusion':
+    default:
+      return <Fusion data={getKeysByObject(allKeyValueData, ['outputType', 'deployment'])} status={status} />;
+  }
+}
 
 const App = () => {
-  const [deployment, setDeployment] = useState('')
-  const [outputType, setOutputType] = useState('')
-  const [blockDistTag, setBlockDistTag] = useState('')
   const [activeTab, setActiveTab] = useState('fusion')
-
   const [allData, setAllData] = useState({
     status: 'idle',
     data: null,
     error: null
   });
+
+  const { status, data: allKeyValueData } = allData;
 
   useEffect(() => {
     setAllData(prevState => ({ ...prevState, status: 'pending',  }));
@@ -33,41 +60,11 @@ const App = () => {
     // setAllData does not need to be watched
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-  
-  useEffect(() => {
-    chrome.storage.sync.get('outputType', (data) => {
-      setOutputType(data.outputType)
-    });
-    chrome.storage.sync.get('blockDistTag', (data) => {
-      setBlockDistTag(data.blockDistTag)
-    });
-    chrome.storage.sync.get('deployment', (data) => {
-      setDeployment(JSON.stringify(data))
-    });
-  }, [])
-
-  const renderSection = () => {
-    switch (activeTab) {
-      case 'fusion':
-        return <Fusion data={{ outputType, deployment }} />;
-      case 'themes':
-        return <Themes data={{blockDistTag}} />
-      case 'docs':
-        return <Docs />
-      case 'alerts':
-        return <Alerts />
-      default:
-        return <Fusion data={{ outputType, deployment }} />
-    }
-  }
-
-
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-
         <Nav variant="pills" defaultActiveKey="fusion">
           <Nav.Item>
             <Nav.Link eventKey="fusion" onClick={() => setActiveTab('fusion')}
@@ -84,12 +81,16 @@ const App = () => {
               Alerts
             </Nav.Link>
           </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="all" onClick={() => setActiveTab('all')}>
+              All
+            </Nav.Link>
+          </Nav.Item>
         </Nav>
         <div>
-          {renderSection()}
+          {renderSection(activeTab, allKeyValueData, status)}
         </div>
       </header>
-      <DataTable data={allData.data} status={allData.status} />
     </div>
   );
 };

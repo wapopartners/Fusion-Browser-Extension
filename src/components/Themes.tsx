@@ -1,13 +1,13 @@
 import React from 'react';
-
+import DataTable from './DataTable';
 import '../App.css';
 
 const Themes = (props: any) => {
-  const { blockDistTag } = props.data
+  const { data, status } = props
   return (
     <div>
       <p>Themes data</p>
-      <p>Block dist tag: {blockDistTag}</p>
+      <DataTable data={data} status={status} />
     </div>
   );
 };
