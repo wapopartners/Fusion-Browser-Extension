@@ -5,7 +5,12 @@
   "manifest_version": 3,
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "arcxp.png"
+    "default_icon": {
+      "16": "/images/dark-16.png",
+      "32": "/images/dark-32.png",
+      "48": "/images/dark-48.png",
+      "128": "/images/dark-128.png"
+    }
   },
   "permissions": [
     "storage"
