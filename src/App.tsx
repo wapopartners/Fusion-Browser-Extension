@@ -16,6 +16,24 @@ const App = () => {
   const [blockDistTag, setBlockDistTag] = useState('')
   const [activeTab, setActiveTab] = useState('fusion')
 
+  const [allData, setAllData] = useState({
+    status: 'idle',
+    data: null,
+    error: null
+  });
+
+  useEffect(() => {
+    setAllData(prevState => ({ ...prevState, status: 'pending',  }));
+    getAllStorageSyncData().then((syncData: any) => {
+      console.log(syncData, 'sync data')
+      setAllData({ status: 'resolved', data: syncData, error: null })
+    }, error => {
+      setAllData(prevState => ({ status: 'rejected', error, data: prevState.data  }))
+    })
+    // setAllData does not need to be watched
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  
   useEffect(() => {
     chrome.storage.sync.get('outputType', (data) => {
       setOutputType(data.outputType)
@@ -43,23 +61,7 @@ const App = () => {
     }
   }
 
-  const [allData, setAllData] = useState({
-    status: 'idle',
-    data: null,
-    error: null
-  });
 
-  useEffect(() => {
-    setAllData(prevState => ({ ...prevState, status: 'pending',  }));
-    getAllStorageSyncData().then((syncData: any) => {
-      console.log(syncData, 'sync data')
-      setAllData({ status: 'resolved', data: syncData, error: null })
-    }, error => {
-      setAllData(prevState => ({ status: 'rejected', error, data: prevState.data  }))
-    })
-    // setAllData does not need to be watched
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <div className="App">
