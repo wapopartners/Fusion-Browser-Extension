@@ -1,32 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Nav from 'react-bootstrap/Nav';
-import Fusion from './components/Fusion';
-import Themes from './components/Themes';
-import Docs from './components/Docs';
-import Alerts from './components/Alerts';
+import {
+  Alerts,
+  AllData,
+  Docs,
+  Fusion,
+  Themes
+} from './components';
+import { filterObjectByKeys, getAllStorageSyncData } from './utils'
 import logo from './logo.svg';
 
 import './App.css';
-import getAllStorageSyncData from './utils/getAllStorageSyncData';
-import AllData from './components/AllData';
-
-const getKeysByObject = (inputObject: any, targetKeys: Array<String>) => {
-  if (inputObject === null) {
-    return {}
-  }
-
-  return Object.keys(inputObject).reduce((output: any, key: string) => {
-    if (targetKeys.includes(key)) {
-      output[key] = inputObject[key]
-    }
-    return output;
-  }, {})
-}
 
 const renderSection = (activeTab: string, allKeyValueData: any, status: string ) => {
   switch (activeTab) {
     case 'themes':
-      return <Themes data={getKeysByObject(allKeyValueData, ['blockDistTag'])} status={status} />
+      return <Themes data={filterObjectByKeys(allKeyValueData, ['blockDistTag'])} status={status} />
     case 'docs':
       return <Docs />
     case 'alerts':
@@ -35,7 +24,7 @@ const renderSection = (activeTab: string, allKeyValueData: any, status: string )
       return <AllData data={allKeyValueData} status={status} />
     case 'fusion':
     default:
-      return <Fusion data={getKeysByObject(allKeyValueData, ['outputType', 'deployment'])} status={status} />;
+      return <Fusion data={filterObjectByKeys(allKeyValueData, ['outputType', 'deployment'])} status={status} />;
   }
 }
 
