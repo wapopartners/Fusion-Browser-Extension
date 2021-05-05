@@ -5,14 +5,14 @@
 .App-logo {
   height: 20vmin;
   pointer-events: none;
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 .App-header {
   background-color: #ffffff;
@@ -20,9 +20,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin-top: 1rem;
 }
 
 .App-link {
