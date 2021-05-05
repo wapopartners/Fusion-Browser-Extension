@@ -39,11 +39,6 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <pre>
-          <code>
-            {allData.status === 'resolved' ? JSON.stringify(allData.data) : allData.status}
-          </code>
-        </pre>
         <p>
           outputType: {outputType}
         </p>
@@ -64,7 +59,7 @@ const App = () => {
           </Nav.Item>
         </Nav>
       </header>
-      <DataTable data={allData}  />
+      <DataTable data={allData.data} status={allData.status} />
     </div>
   );
 };

@@ -1,10 +1,12 @@
-function DataTable(props: { data: any; }) {
-  const { data } = props;
-  const dataEntries = Object.entries(data)
+function DataTable(props: { data: any; status: string }) {
+  const { status, data } = props;
+
   return (
-    <table>
-      {dataEntries.map()}
-    </table>
+    <pre>
+      <code>
+        {status === 'resolved' ? JSON.stringify(data) : status}
+      </code>
+    </pre>
   )
 }
 
