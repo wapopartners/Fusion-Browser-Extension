@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Nav from 'react-bootstrap/Nav';
 import logo from './logo.svg';
 
 import './App.css';
@@ -24,6 +25,19 @@ const App = () => {
         <p>
           deployment: {deployment}
         </p>
+        <Nav variant="pills" defaultActiveKey="fusion">
+          <Nav.Item>
+            <Nav.Link eventKey="fusion">Fusion</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="themes">Themes</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="alerts">
+              Alerts
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
       </header>
     </div>
   );
