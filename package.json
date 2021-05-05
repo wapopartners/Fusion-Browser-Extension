@@ -27,7 +27,6 @@
   "bugs": {
     "url": "https://github.com/wapopartners/Fusion-Browser-Extension/issues"
   },
-  "homepage": "https://github.com/wapopartners/Fusion-Browser-Extension#readme",
   "dependencies": {
     "@craco/craco": "^6.1.2",
     "@testing-library/jest-dom": "^5.12.0",
