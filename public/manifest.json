@@ -1,0 +1,26 @@
+{
+  "name": "Arc Fusion",
+  "description": "Check fusion and themes data",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "arcxp.png"
+  },
+  "icons": {
+    "16": "arcxp.png",
+    "48": "arcxp.png",
+    "128": "arcxp.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["./static/js/content.js"],
+      "all_frames": false,
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "storage"
+  ]
+}
