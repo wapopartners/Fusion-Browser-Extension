@@ -1,7 +1,13 @@
 {
   "name": "fusion-browser-extension",
-  "description": "Look at fusion data and other arc fusion engine-related info",
   "version": "0.1.0",
+  "description": "Look at fusion data and other arc fusion engine-related info",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "INLINE_RUNTIME_CHUNK=false craco build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
   "private": true,
   "repository": {
     "type": "git",
@@ -38,12 +44,6 @@
     "react-scripts": "4.0.3",
     "typescript": "^4.2.4",
     "web-vitals": "^1.1.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "INLINE_RUNTIME_CHUNK=false craco build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
