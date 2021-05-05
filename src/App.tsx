@@ -7,44 +7,46 @@ import Alerts from './components/Alerts';
 import logo from './logo.svg';
 
 import './App.css';
+import CheckDockerhub from './components/CheckDockerhub';
 
 const App = () => {
-  const [deployment, setDeployment] = useState('')
-  const [outputType, setOutputType] = useState('')
-  const [blockDistTag, setBlockDistTag] = useState('')
+  // const [deployment, setDeployment] = useState('')
+  // const [outputType, setOutputType] = useState('')
+  // const [blockDistTag, setBlockDistTag] = useState('')
   const [activeTab, setActiveTab] = useState('fusion')
 
-  useEffect(() => {
-    chrome.storage.sync.get('outputType', (data) => {
-      setOutputType(data.outputType)
-    });
-    chrome.storage.sync.get('blockDistTag', (data) => {
-      setBlockDistTag(data.blockDistTag)
-    });
-    chrome.storage.sync.get('deployment', (data) => {
-      setDeployment(JSON.stringify(data))
-    });
-  }, [])
+  // useEffect(() => {
+  //   chrome.storage.sync.get('outputType', (data) => {
+  //     setOutputType(data.outputType)
+  //   });
+  //   chrome.storage.sync.get('blockDistTag', (data) => {
+  //     setBlockDistTag(data.blockDistTag)
+  //   });
+  //   chrome.storage.sync.get('deployment', (data) => {
+  //     setDeployment(JSON.stringify(data))
+  //   });
+  // }, [])
 
-  const renderSection = () => {
-    switch (activeTab) {
-      case 'fusion':
-        return <Fusion data={{ outputType, deployment }} />;
-      case 'themes':
-        return <Themes data={{blockDistTag}} />
-      case 'docs':
-        return <Docs />
-      case 'alerts':
-        return <Alerts />
-      default:
-        return <Fusion data={{ outputType, deployment }} />
-    }
-  }
+  // const renderSection = () => {
+  //   switch (activeTab) {
+  //     case 'fusion':
+  //       return <Fusion data={{ outputType, deployment }} />;
+  //     case 'themes':
+  //       return <Themes data={{blockDistTag}} />
+  //     case 'docs':
+  //       return <Docs />
+  //     case 'alerts':
+  //       return <Alerts />
+  //     default:
+  //       return <Fusion data={{ outputType, deployment }} />
+  //   }
+  // }
 
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <CheckDockerhub />
 
         <Nav variant="pills" defaultActiveKey="fusion">
           <Nav.Item>
@@ -64,7 +66,7 @@ const App = () => {
           </Nav.Item>
         </Nav>
         <div>
-          {renderSection()}
+          {/* {renderSection()} */}
         </div>
       </header>
     </div>
