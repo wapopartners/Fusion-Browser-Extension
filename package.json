@@ -1,0 +1,27 @@
+{
+  "name": "fusion-browser-extension",
+  "version": "0.0.1",
+  "description": "Look at fusion data and other arc fusion engine-related info",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wapopartners/Fusion-Browser-Extension.git"
+  },
+  "keywords": [
+    "fusion",
+    "debugging",
+    "performance"
+  ],
+  "author": "",
+  "contributors": [
+    "Beltran Caliz",
+    "Jack Howard"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wapopartners/Fusion-Browser-Extension/issues"
+  },
+  "homepage": "https://github.com/wapopartners/Fusion-Browser-Extension#readme"
+}

@@ -1,13 +1,24 @@
 {
-  "name": "Arc",
+  "name": "Arc Fusion",
   "description": "Check fusion data",
   "version": "0.1",
   "manifest_version": 3,
   "action": {
-    "default_icon": "magnifying-glass.png",
-    "default_popup": "index.html"
+    "default_popup": "popup.html",
+    "default_icon": "arcxp.png"
   },
   "permissions": [
-    "tabs"
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://corecomponents.arcpublishing.com/*",
+        "http://localhost/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
   ]
 }
