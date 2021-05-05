@@ -94,10 +94,3 @@ const App = () => {
 
 export default App
 
-function allData(allData: any, arg1: string) {
-  throw new Error('Function not implemented.');
-}
-function syncData(syncData: any) {
-  throw new Error('Function not implemented.');
-}
-
