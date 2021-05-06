@@ -1,19 +1,15 @@
 import React from 'react';
 
 import '../App.css';
+import DataTable from './DataTable';
 
 const Fusion = (props: any) => {
-  const { outputType, deployment } = props.data;
+  const { data, status } = props;
   return (
     <div> 
       <p>Fusion data</p>
-      <p>
-        outputType: {outputType}
-      </p>
-      <p>
-        deployment: {deployment}
-      </p></div>
-
+      <DataTable data={data} status={status} />
+    </div>
   );
 };
 
