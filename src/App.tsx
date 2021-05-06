@@ -68,7 +68,7 @@ const App = () => {
           </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="alerts" onClick={() => setActiveTab('alerts')}>
-              Alerts <Badge variant="danger">1</Badge>
+              Alerts <Badge variant="danger">2</Badge>
               <span className="sr-only">unchecked alerts</span>
             </Nav.Link>
           </Nav.Item>

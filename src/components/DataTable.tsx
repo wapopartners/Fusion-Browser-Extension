@@ -40,7 +40,7 @@ function DataTable(props: { data: any; status: string }) {
 
     return (
       <div style={{ maxWidth: '100%', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
-        <p>Click row to expand</p>
+        <p className="expand-info">Click row to expand</p>
         <BootstrapTable keyField='key' data={formattedData} columns={columns} expandRow={expandRow} />
       </div>
     )

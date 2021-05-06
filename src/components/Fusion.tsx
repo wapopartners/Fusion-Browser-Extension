@@ -6,7 +6,7 @@ import DataTable from './DataTable';
 const Fusion = (props: any) => {
   const { data, status } = props;
   return (
-    <div> 
+    <div className="spacer-top"> 
       <DataTable data={data} status={status} />
     </div>
   );
