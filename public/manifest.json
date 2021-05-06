@@ -18,6 +18,9 @@
     "48": "/images/dark-48.png",
     "128": "/images/dark-128.png"
   },
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
@@ -27,6 +30,9 @@
     }
   ],
   "permissions": [
+    "tabs",
+    "activeTab",
+    "scripting",
     "storage"
   ]
 }

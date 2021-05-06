@@ -16,7 +16,11 @@ function saveKeyValueEntryArray(objectToSave) {
       JSON.stringify(value).length >= chrome.storage.sync.QUOTA_BYTES_PER_ITEM
     ) {
       // todo: may want to pass these back in a save as nested?
-      console.log(`${key} is too big: ${JSON.stringify(value)}`);
+      // console.log(`${key} is too big: ${JSON.stringify(value)}`);
+      chrome.runtime.sendMessage({ data: entry, type: 'big-data-save' }, function (response) {
+        console.log('sent message', response)
+        // console.log(response, 'response');
+      });
     } else {
       chrome.storage.sync.set({ [key]: value });
       // allSavedKeys.push(key)
@@ -44,16 +48,15 @@ function saveFusionData(fusionData) {
 
   chrome.storage.sync.set({ outputType });
   chrome.storage.sync.set({ deployment });
-  chrome.storage.sync.set({ blockDistTag: environment.BLOCK_DIST_TAG });
   chrome.storage.sync.set({ arcSite });
   chrome.storage.sync.set({ spaEnabled });
-  chrome.storage.sync.set({ resizerURL: environment.resizerURL });
 
   saveKeyValueEntryArray(globalContentConfig);
   saveKeyValueEntryArray(globalContent);
   saveKeyValueEntryArray(tree);
   saveKeyValueEntryArray(siteProperties);
   saveKeyValueEntryArray(contentCache);
+  saveKeyValueEntryArray(environment)
 }
 
 window.addEventListener(
