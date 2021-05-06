@@ -5,8 +5,7 @@ import '../App.css';
 const Themes = (props: any) => {
   const { data, status } = props
   return (
-    <div>
-      <p>Themes data</p>
+    <div className="spacer-top">
       <DataTable data={data} status={status} />
     </div>
   );

@@ -19,3 +19,12 @@
   color: white;
   margin-top: 1rem;
 }
+
+.spacer-top {
+  margin-top: 1rem;
+}
+
+.expand-info {
+  font-size: 14px;
+  color: darkgray;
+}
