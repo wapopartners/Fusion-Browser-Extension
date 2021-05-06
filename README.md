@@ -2,6 +2,11 @@
 
 ## How To Use
 
+### Go to Chrome Web Store 
+
+The submission is currently being reviewed. The link will be posted when approved.
+### Load unpacked
+
 1. In your Terminal, run `cd && git clone https://github.com/wapopartners/Fusion-Browser-Extension`
 2. `cd Fusion-Browser-Extension && npm i && npm run build`
 3. Go to your Chrome or Chromium-based browser (e.g., Brave) extension panel. Click the `Manage Extensions` button.
@@ -15,4 +20,6 @@
 7. Now that the extension is loaded, you should see the icon in your extensions. 
   ![See extension](./docs/see-extension-loaded.png) NOTE: If you're a developer whose working on the extension, you can make a change then re-run `npm run build`. And, if you click the refresh button (circled in pink), you will see that change manifested.
 8. To use the extension's user interface, the extension needs to be pinned to your top-menu. 
-  ![Pin extension](./docs/pin-extension-to-see-in-menu.png)
+  ![Pin extension](./docs/pin-extension-to-see-in-menu.png) ![Pinned extension](./docs/see-extension-menu.png)
+9. Go to a page with fusion 2.8 with message posting. Click the extension to see content shared from fusion engine, including distribution tag and engine version, that was not previously accessible on the window.Fusion object. You can also see window.Fusion data like global content.
+  ![Show fusion data](./docs/Show-fusion-data.png)
