@@ -42,13 +42,6 @@ const App = () => {
   const { status, data: allKeyValueData } = allData;
 
   useEffect(() => {
-    chrome.runtime.sendMessage({ data: 'alive awake alert enthusiastic', type: 'from-popup' }, function (response) {
-      console.log('message response ... global state', response)
-      // console.log(response, 'response');
-    });
-  }, [])
-
-  useEffect(() => {
     setAllData(prevState => ({ ...prevState, status: 'pending', }));
     getAllStorageSyncData().then((syncData: any) => {
       console.log(syncData, 'sync data')

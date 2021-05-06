@@ -16,11 +16,7 @@ function saveKeyValueEntryArray(objectToSave) {
       JSON.stringify(value).length >= chrome.storage.sync.QUOTA_BYTES_PER_ITEM
     ) {
       // todo: may want to pass these back in a save as nested?
-      // console.log(`${key} is too big: ${JSON.stringify(value)}`);
-      chrome.runtime.sendMessage({ data: entry, type: 'big-data-save' }, function (response) {
-        console.log('sent message', response)
-        // console.log(response, 'response');
-      });
+      console.log(`${key} is too big: ${JSON.stringify(value)}`);
     } else {
       chrome.storage.sync.set({ [key]: value });
       // allSavedKeys.push(key)
