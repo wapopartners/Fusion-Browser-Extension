@@ -47,7 +47,7 @@ function saveFusionData(fusionData) {
   chrome.storage.sync.set({ blockDistTag: environment.BLOCK_DIST_TAG });
   chrome.storage.sync.set({ arcSite });
   chrome.storage.sync.set({ spaEnabled });
-  chrome.storage.sync.set({ spaEnabled });
+  chrome.storage.sync.set({ resizerURL: environment.resizerURL });
 
   saveKeyValueEntryArray(globalContentConfig);
   saveKeyValueEntryArray(globalContent);
