@@ -1,6 +1,24 @@
 /* eslint-disable no-undef */
-// send test message of the extension to the engine?
-window.postMessage({ type: 'fusion-extension' });
+
+// check if current URL has been crawled
+chrome.storage.sync.get('url', (data) => {
+  if (!data.url) {
+    chrome.storage.sync.set({ url: location.href });
+  } else {
+    if (data.url === location.href) {
+    } else {
+      chrome.storage.sync.clear();
+      chrome.storage.sync.set({ url: location.href });
+    }
+  }
+});
+
+
+// Notify engine to send message
+setTimeout(() => {
+  console.log('sending message to engine');
+  window.postMessage({ type: 'fusion-extension' });
+}, 2000);
 
 // input object with keys and values
 // saves each key and value individually to storage
@@ -41,10 +59,16 @@ function saveFusionData(fusionData) {
     siteProperties,
     contentCache,
   } = fusionData;
-
+  console.log('setting storage');
   chrome.storage.sync.set({ outputType });
   chrome.storage.sync.set({ deployment });
   chrome.storage.sync.set({ blockDistTag: environment.BLOCK_DIST_TAG });
+  chrome.storage.sync.set({ cssDistTag: environment.CSS_DIST_TAG });
+  chrome.storage.sync.set({
+    engineSdkDistTag: environment.ENGINE_SDK_DIST_TAG,
+  });
+  chrome.storage.sync.set({ fusionRelease: environment.FUSION_RELEASE });
+  chrome.storage.sync.set({ environment: environment.ENVIRONMENT });
   chrome.storage.sync.set({ arcSite });
   chrome.storage.sync.set({ spaEnabled });
   chrome.storage.sync.set({ resizerURL: environment.resizerURL });
@@ -67,3 +91,8 @@ window.addEventListener(
   },
   false
 );
+
+chrome.windows.onFocusChanged.addListener(function (window) {
+  //handle close event
+  console.log('close event');
+});

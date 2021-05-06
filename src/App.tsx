@@ -31,6 +31,7 @@ const renderSection = (activeTab: string, allKeyValueData: any, status: string) 
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('fusion')
+  const [URL, setURL] = useState('')
   const [allData, setAllData] = useState({
     status: 'idle',
     data: null,
@@ -40,6 +41,9 @@ const App = () => {
   const { status, data: allKeyValueData } = allData;
 
   useEffect(() => {
+    chrome.storage.sync.get('url', (data) => {
+      setURL(data.url)
+    });
     setAllData(prevState => ({ ...prevState, status: 'pending', }));
     getAllStorageSyncData().then((syncData: any) => {
       console.log(syncData, 'sync data')
@@ -55,40 +59,41 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <p>Crawled URL: {URL}</p>
         {
-          !allData.data && allData.status !== 'pending' ?
-            <h3>Not a Fusion page</h3>
-            : <>
-              <Nav variant="pills" defaultActiveKey="fusion">
-                <Nav.Item>
-                  <Nav.Link eventKey="fusion" onClick={() => setActiveTab('fusion')}
-                  >Fusion</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="themes" onClick={() => setActiveTab('themes')}>Themes</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="docs" onClick={() => setActiveTab('docs')}>Docs</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link eventKey="alerts" onClick={() => setActiveTab('alerts')}>
-                    Alerts <Badge variant="danger">2</Badge>
-                    <span className="sr-only">unchecked alerts</span>
-                  </Nav.Link>
-                </Nav.Item>
-                {
-                  //   <Nav.Item>
-                  //   <Nav.Link eventKey="all" onClick={() => setActiveTab('all')}>
-                  //     All
-                  //   </Nav.Link>
-                  // </Nav.Item>
-                }
+          allData.status === 'pending' || allData.status === 'idle' ? <h3>Loading...</h3>
+            : !allData.data || !allData.data.arcSite ?
+              <h3>Not a Fusion page</h3>
+              : <>
+                <Nav variant="pills" defaultActiveKey="fusion">
+                  <Nav.Item>
+                    <Nav.Link eventKey="fusion" onClick={() => setActiveTab('fusion')}
+                    >Fusion</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="themes" onClick={() => setActiveTab('themes')}>Themes</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="docs" onClick={() => setActiveTab('docs')}>Docs</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link eventKey="alerts" onClick={() => setActiveTab('alerts')}>
+                      Alerts <Badge variant="danger">2</Badge>
+                      <span className="sr-only">unchecked alerts</span>
+                    </Nav.Link>
+                  </Nav.Item>
+                  {
+                    //   <Nav.Item>
+                    //   <Nav.Link eventKey="all" onClick={() => setActiveTab('all')}>
+                    //     All
+                    //   </Nav.Link>
+                    // </Nav.Item>
+                  }
 
-              </Nav>
-              <div>
-                {renderSection(activeTab, allKeyValueData, status)}
-              </div>
-            </>
+                </Nav>
+                  {renderSection(activeTab, allKeyValueData, status)}
+                </div>
+              </>
         }
 
       </header>
