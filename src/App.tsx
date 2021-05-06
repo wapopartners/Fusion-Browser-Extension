@@ -55,35 +55,42 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <Nav variant="pills" defaultActiveKey="fusion">
-          <Nav.Item>
-            <Nav.Link eventKey="fusion" onClick={() => setActiveTab('fusion')}
-            >Fusion</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="themes" onClick={() => setActiveTab('themes')}>Themes</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="docs" onClick={() => setActiveTab('docs')}>Docs</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="alerts" onClick={() => setActiveTab('alerts')}>
-              Alerts <Badge variant="danger">2</Badge>
-              <span className="sr-only">unchecked alerts</span>
-            </Nav.Link>
-          </Nav.Item>
-          {
-            //   <Nav.Item>
-            //   <Nav.Link eventKey="all" onClick={() => setActiveTab('all')}>
-            //     All
-            //   </Nav.Link>
-            // </Nav.Item>
-          }
+        {
+          !allData.data && allData.status !== 'pending' ?
+            <h3>Not a Fusion page</h3>
+            : <>
+              <Nav variant="pills" defaultActiveKey="fusion">
+                <Nav.Item>
+                  <Nav.Link eventKey="fusion" onClick={() => setActiveTab('fusion')}
+                  >Fusion</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="themes" onClick={() => setActiveTab('themes')}>Themes</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="docs" onClick={() => setActiveTab('docs')}>Docs</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link eventKey="alerts" onClick={() => setActiveTab('alerts')}>
+                    Alerts <Badge variant="danger">2</Badge>
+                    <span className="sr-only">unchecked alerts</span>
+                  </Nav.Link>
+                </Nav.Item>
+                {
+                  //   <Nav.Item>
+                  //   <Nav.Link eventKey="all" onClick={() => setActiveTab('all')}>
+                  //     All
+                  //   </Nav.Link>
+                  // </Nav.Item>
+                }
 
-        </Nav>
-        <div>
-          {renderSection(activeTab, allKeyValueData, status)}
-        </div>
+              </Nav>
+              <div>
+                {renderSection(activeTab, allKeyValueData, status)}
+              </div>
+            </>
+        }
+
       </header>
     </div>
   );

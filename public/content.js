@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // send test message of the extension to the engine?
 window.postMessage({ type: 'fusion-extension' });
 
@@ -38,7 +39,7 @@ function saveFusionData(fusionData) {
     environment,
     arcSite,
     siteProperties,
-    contentCache
+    contentCache,
   } = fusionData;
 
   chrome.storage.sync.set({ outputType });
