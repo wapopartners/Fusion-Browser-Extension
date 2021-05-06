@@ -32,6 +32,7 @@ const renderSection = (activeTab: string, allKeyValueData: any, status: string) 
 const App = () => {
   const [activeTab, setActiveTab] = useState('fusion')
   const [URL, setURL] = useState('')
+  const [fallback, setFallback] = useState(false)
   const [allData, setAllData] = useState({
     status: 'idle',
     data: null,
@@ -40,10 +41,13 @@ const App = () => {
 
   const { status, data: allKeyValueData } = allData;
 
+  chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+    let url = tabs[0].url;
+    setURL(url);
+    setFallback(true)
+  });
+
   useEffect(() => {
-    chrome.storage.sync.get('url', (data) => {
-      setURL(data.url)
-    });
     setAllData(prevState => ({ ...prevState, status: 'pending', }));
     getAllStorageSyncData().then((syncData: any) => {
       console.log(syncData, 'sync data')
@@ -59,6 +63,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        {fallback && <p>Refresh the page to recrawl</p>}
         <p>Crawled URL: {URL}</p>
         {
           allData.status === 'pending' || allData.status === 'idle' ? <h3>Loading...</h3>

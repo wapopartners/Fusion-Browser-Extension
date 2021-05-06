@@ -1,19 +1,5 @@
 /* eslint-disable no-undef */
 
-// check if current URL has been crawled
-chrome.storage.sync.get('url', (data) => {
-  if (!data.url) {
-    chrome.storage.sync.set({ url: location.href });
-  } else {
-    if (data.url === location.href) {
-    } else {
-      chrome.storage.sync.clear();
-      chrome.storage.sync.set({ url: location.href });
-    }
-  }
-});
-
-
 // Notify engine to send message
 setTimeout(() => {
   console.log('sending message to engine');
@@ -95,4 +81,8 @@ window.addEventListener(
 chrome.windows.onFocusChanged.addListener(function (window) {
   //handle close event
   console.log('close event');
+});
+
+chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+  chrome.storage.sync.clear();
 });
