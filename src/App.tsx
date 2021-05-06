@@ -3,7 +3,6 @@ import Nav from 'react-bootstrap/Nav';
 import Badge from 'react-bootstrap/Badge';
 import {
   Alerts,
-  AllData,
   Docs,
   Fusion,
   Themes
@@ -26,8 +25,6 @@ const renderSection = (activeTab: string, allKeyValueData: any, status: string) 
       return <Docs />
     case 'alerts':
       return <Alerts />
-    case 'all':
-      return <AllData data={allKeyValueData} status={status} />
     case 'fusion':
     default:
       return <Fusion data={filterObjectByKeys(allKeyValueData, ['arcSite', 'spaEnabled', 'outputType', 'deployment', ...TREE_KEYS, ...CONTENT_CACHE_KEYS])} status={status} />;
@@ -81,14 +78,6 @@ const App = () => {
                     <span className="sr-only">unchecked alerts</span>
                   </Nav.Link>
                 </Nav.Item>
-                {
-                  //   <Nav.Item>
-                  //   <Nav.Link eventKey="all" onClick={() => setActiveTab('all')}>
-                  //     All
-                  //   </Nav.Link>
-                  // </Nav.Item>
-                }
-
               </Nav>
               <div>
                 {renderSection(activeTab, allKeyValueData, status)}
