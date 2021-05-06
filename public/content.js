@@ -28,25 +28,31 @@ function saveKeyValueEntryArray(objectToSave) {
 function saveFusionData(fusionData) {
   console.log('received message from engine', fusionData);
 
-  // set arcSite value
-  const arcSite = fusionData.globalContent.website;
-  chrome.storage.sync.set({ arcSite });
-
-  // global content
   const {
     globalContent,
+    globalContentConfig,
     outputType,
     tree,
     deployment,
+    spaEnabled,
     environment,
+    arcSite,
+    siteProperties,
+    contentCache
   } = fusionData;
 
   chrome.storage.sync.set({ outputType });
   chrome.storage.sync.set({ deployment });
   chrome.storage.sync.set({ blockDistTag: environment.BLOCK_DIST_TAG });
+  chrome.storage.sync.set({ arcSite });
+  chrome.storage.sync.set({ spaEnabled });
+  chrome.storage.sync.set({ spaEnabled });
 
+  saveKeyValueEntryArray(globalContentConfig);
   saveKeyValueEntryArray(globalContent);
   saveKeyValueEntryArray(tree);
+  saveKeyValueEntryArray(siteProperties);
+  saveKeyValueEntryArray(contentCache);
 }
 
 window.addEventListener(

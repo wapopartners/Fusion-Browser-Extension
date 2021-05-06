@@ -16,7 +16,7 @@ import './App.css';
 const renderSection = (activeTab: string, allKeyValueData: any, status: string) => {
   switch (activeTab) {
     case 'themes':
-      return <Themes data={filterObjectByKeys(allKeyValueData, ['blockDistTag'])} status={status} />
+      return <Themes data={filterObjectByKeys(allKeyValueData, ['blockDistTag', 'siteProperties'])} status={status} />
     case 'docs':
       return <Docs />
     case 'alerts':
@@ -25,7 +25,7 @@ const renderSection = (activeTab: string, allKeyValueData: any, status: string) 
       return <AllData data={allKeyValueData} status={status} />
     case 'fusion':
     default:
-      return <Fusion data={filterObjectByKeys(allKeyValueData, ['outputType', 'deployment'])} status={status} />;
+      return <Fusion data={filterObjectByKeys(allKeyValueData, ['arcSite', 'spaEnabled', 'outputType', 'deployment', 'tree'])} status={status} />;
   }
 }
 
