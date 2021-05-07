@@ -8,6 +8,9 @@
       // set this for listening again
       this.currentTabId = tabId;
 
+      // clear storage on tab change
+      chrome.storage.sync.clear();
+
       // set the new current popup
       chrome.action.setPopup({ popup: 'refresh-page.html', tabId })
     }
