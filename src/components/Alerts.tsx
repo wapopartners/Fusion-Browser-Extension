@@ -3,15 +3,24 @@ import Alert from 'react-bootstrap/Alert';
 
 import '../App.css';
 
-const Alerts = () => {
+const Alerts = (props: any) => {
+  const { data } = props;
+  const SUPPORTED_FUSION_RELEASE = '2.6.4';
+  const LATEST_FUSION_RELEASE = '2.8.0';
   return (
     <div className="spacer-top">
-      <Alert variant="danger">
-        You are using Fusion version 2.6.2 which is no longer supported. Please upgrade to 2.7.3
-      </Alert>
-      <Alert variant="warning">
-        You are using blocks @stable 5.3.1. Consider using @stable 5.4.1 by redeploying your bundle.
-      </Alert>
+      {
+        (data.FUSION_RELEASE < SUPPORTED_FUSION_RELEASE) &&
+        <Alert variant="danger">
+          You are using Fusion version {data.FUSION_RELEASE} which is no longer supported. Please upgrade to {SUPPORTED_FUSION_RELEASE}
+        </Alert>
+      }
+      {
+        (data.FUSION_RELEASE < LATEST_FUSION_RELEASE && data.FUSION_RELEASE > SUPPORTED_FUSION_RELEASE) &&
+        <Alert variant="warning">
+          You are using Fusion version {data.FUSION_RELEASE}. Consider using the latest version ({LATEST_FUSION_RELEASE}).
+        </Alert>
+      }
     </div>
   );
 };
