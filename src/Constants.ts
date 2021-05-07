@@ -52,16 +52,57 @@ const TREE_KEYS = [
   'type',
 ];
 
-const CONTENT_CACHE_KEYS = [
-  'content-api',
-  'resize-image-api',
-  'story-feed-query',
-  'story-feed-tag'
-]
+// documenting all saved keys
+// const ALL_KEYS = [
+//  "BLOCK_DIST_TAG",
+//  "CONTEXT_PATH",
+//  "ENVIRONMENT",
+//  "FUSION_RELEASE",
+//  "allowedImageDomains",
+//  "arcSite",
+//  "aspectRatios",
+//  "breakpoints",
+//  "collection",
+//  "copyrightText",
+//  "dangerouslyInjectJS",
+//  "dateLocalization",
+//  "deployment",
+//  "dfpId",
+//  "facebookPage",
+//  "fallbackImage",
+//  "fontUrl",
+//  "imageWidths",
+//  "locale",
+//  "nativoIntegration",
+//  "navBarBackground",
+//  "outputType",
+//  "playerRoot",
+//  "primaryLogo",
+//  "primaryLogoAlt",
+//  "props",
+//  "query",
+//  "querylyId",
+//  "querylyOrg",
+//  "resizerURL",
+//  "rssUrl",
+//  "searchKey",
+//  "source",
+//  "taboolaPublisherId",
+//  "taboolaWidgets",
+//  "twitterUsername",
+//  "type",
+//  "videoEnv",
+//  "videoOrg",
+//  "websiteAdPath",
+//  "websiteDomain",
+//  "websiteName",
+//  "children",
+//  "contentCache",
+//  "globalContent",
+// ]
 
 export {
   ENVIRONMENT_KEYS,
   SITE_PROPERTY_KEYS,
   TREE_KEYS,
-  CONTENT_CACHE_KEYS
 }
