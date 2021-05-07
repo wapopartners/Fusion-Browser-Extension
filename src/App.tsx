@@ -3,29 +3,31 @@ import Nav from 'react-bootstrap/Nav';
 import Badge from 'react-bootstrap/Badge';
 import {
   Alerts,
-  AllData,
   Docs,
   Fusion,
   Themes
 } from './components';
 import { filterObjectByKeys, getAllStorageSyncData } from './utils'
 import logo from './logo.svg';
-
+import {
+  CONTENT_CACHE_KEYS,
+  ENVIRONMENT_KEYS,
+  SITE_PROPERTY_KEYS,
+  TREE_KEYS
+} from './Constants'
 import './App.css';
 
 const renderSection = (activeTab: string, allKeyValueData: any, status: string) => {
   switch (activeTab) {
     case 'themes':
-      return <Themes data={filterObjectByKeys(allKeyValueData, ['blockDistTag', 'siteProperties'])} status={status} />
+      return <Themes data={filterObjectByKeys(allKeyValueData, [...ENVIRONMENT_KEYS, ...SITE_PROPERTY_KEYS])} status={status} />
     case 'docs':
       return <Docs />
     case 'alerts':
       return <Alerts />
-    case 'all':
-      return <AllData data={allKeyValueData} status={status} />
     case 'fusion':
     default:
-      return <Fusion data={filterObjectByKeys(allKeyValueData, ['arcSite', 'spaEnabled', 'outputType', 'deployment', 'tree'])} status={status} />;
+      return <Fusion data={filterObjectByKeys(allKeyValueData, ['arcSite', 'spaEnabled', 'outputType', 'deployment', ...TREE_KEYS, ...CONTENT_CACHE_KEYS])} status={status} />;
   }
 }
 
@@ -87,14 +89,6 @@ const App = () => {
                       <span className="sr-only">unchecked alerts</span>
                     </Nav.Link>
                   </Nav.Item>
-                  {
-                    //   <Nav.Item>
-                    //   <Nav.Link eventKey="all" onClick={() => setActiveTab('all')}>
-                    //     All
-                    //   </Nav.Link>
-                    // </Nav.Item>
-                  }
-
                 </Nav>
                 <div>
                   {renderSection(activeTab, allKeyValueData, status)}
