@@ -23,7 +23,7 @@ const renderSection = (activeTab: string, allKeyValueData: any, status: string) 
     case 'docs':
       return <Docs />
     case 'alerts':
-      return <Alerts />
+      return <Alerts data={filterObjectByKeys(allKeyValueData, [...ENVIRONMENT_KEYS, "spaEnabled"])} />
     case 'fusion':
     default:
       return <Fusion data={filterObjectByKeys(allKeyValueData, ['arcSite', 'spaEnabled', 'outputType', 'deployment', ...TREE_KEYS, 'contentCache', 'globalContent'])} status={status} />;
