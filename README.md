@@ -2,9 +2,11 @@
 
 ## How To Use
 
+- You'll need Fusion version `2.8.0-browserExtension` to use it
 ### Go to Chrome Web Store 
 
-The submission is currently being reviewed. The link will be posted when approved.
+![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jphekmadmeccbihghpbiicehnigbphme?color=06233f)
+
 ### Load unpacked
 
 1. In your Terminal, run `cd && git clone https://github.com/wapopartners/Fusion-Browser-Extension`
