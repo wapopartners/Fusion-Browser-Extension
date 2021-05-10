@@ -7,7 +7,7 @@ import {
   Fusion,
   Themes
 } from './components';
-import { filterObjectByKeys, getAllStorageSyncData } from './utils'
+import { filterObjectByKeys, getAllStorageSyncData, getAlertNotificationAmount } from './utils'
 import logo from './logo.svg';
 import {
   CONTENT_CACHE_KEYS,
@@ -53,6 +53,8 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  const alertNotificationAmount = getAlertNotificationAmount(allKeyValueData?.FUSION_RELEASE);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -74,7 +76,11 @@ const App = () => {
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="alerts" onClick={() => setActiveTab('alerts')}>
-                    Alerts <Badge variant="danger">2</Badge>
+                    Alerts {
+                      alertNotificationAmount > 0 ?
+                        (<Badge variant="danger">{alertNotificationAmount}</Badge>) :
+                        null
+                      }
                     <span className="sr-only">unchecked alerts</span>
                   </Nav.Link>
                 </Nav.Item>
