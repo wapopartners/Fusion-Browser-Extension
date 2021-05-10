@@ -24,7 +24,6 @@ const expandRow = {
 
 function DataTable(props: { data: any; status: string }) {
   const { status, data } = props;
-  console.log(props)
 
   const columns = [{
     dataField: 'key',
@@ -36,7 +35,6 @@ function DataTable(props: { data: any; status: string }) {
 
   if (status === 'resolved') {
     const formattedData = formatKeyValuePair(data)
-    console.log(formattedData, 'formatted data');
 
     return (
       <div style={{ maxWidth: '100%', whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>

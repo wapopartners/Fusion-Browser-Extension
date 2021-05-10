@@ -10,7 +10,6 @@ import {
 import { filterObjectByKeys, getAllStorageSyncData } from './utils'
 import logo from './logo.svg';
 import {
-  CONTENT_CACHE_KEYS,
   ENVIRONMENT_KEYS,
   SITE_PROPERTY_KEYS,
   TREE_KEYS
@@ -27,7 +26,7 @@ const renderSection = (activeTab: string, allKeyValueData: any, status: string) 
       return <Alerts />
     case 'fusion':
     default:
-      return <Fusion data={filterObjectByKeys(allKeyValueData, ['arcSite', 'spaEnabled', 'outputType', 'deployment', ...TREE_KEYS, ...CONTENT_CACHE_KEYS])} status={status} />;
+      return <Fusion data={filterObjectByKeys(allKeyValueData, ['arcSite', 'spaEnabled', 'outputType', 'deployment', ...TREE_KEYS, 'contentCache', 'globalContent'])} status={status} />;
   }
 }
 
@@ -42,9 +41,19 @@ const App = () => {
   const { status, data: allKeyValueData } = allData;
 
   useEffect(() => {
+    chrome.runtime.sendMessage({ type: 'from-popup' }, (response) => {
+      setAllData(prevState => ({
+        // setting data via call and response
+        data: { ...prevState.data, ...response.data }, 
+        error: prevState.error, 
+        status: prevState.status
+      }))
+    });
+  }, [])
+
+  useEffect(() => {
     setAllData(prevState => ({ ...prevState, status: 'pending', }));
     getAllStorageSyncData().then((syncData: any) => {
-      console.log(syncData, 'sync data')
       setAllData({ status: 'resolved', data: syncData, error: null })
     }, error => {
       setAllData(prevState => ({ status: 'rejected', error, data: prevState.data }))
