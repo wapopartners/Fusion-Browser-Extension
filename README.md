@@ -5,7 +5,7 @@
 - You'll need Fusion version `2.8.0-browserExtension` to use it
 ### Go to Chrome Web Store 
 
-![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jphekmadmeccbihghpbiicehnigbphme?color=06233f)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/jphekmadmeccbihghpbiicehnigbphme?color=06233f)](https://chrome.google.com/webstore/detail/arc-fusion/jphekmadmeccbihghpbiicehnigbphme?hl=en&authuser=0)
 
 ### Load unpacked
 
