@@ -1,24 +1,27 @@
 import BootstrapTable from 'react-bootstrap-table-next';
+import AudioPlayer from './AudioPlayer';
 
 const formatKeyValuePair = (keyValuePairObject: Object) => {
   return Object.entries(keyValuePairObject).map(arrayPair => {
     const stringifiedValue = JSON.stringify(arrayPair[1]);
-    
+
     return ({
       key: arrayPair[0],
       previewValue: stringifiedValue.slice(0, 20),
       // for now stringify
       value: stringifiedValue
-  })});
+    })
+  });
 }
 
 const expandRow = {
-  renderer: (row: { value: string; }) => {
+  renderer: (row: { value: string, key: string }) => {
     return (
-      <p>
-        {row.value}
-      </p>
-  )},
+      row.key !== 'BLOCK_DIST_TAG' 
+      ? <p>{row.value}</p> 
+      : <AudioPlayer tag={row.value.replace(/['"]+/g, '')} />
+    )
+  },
   showExpandColumn: false
 };
 
