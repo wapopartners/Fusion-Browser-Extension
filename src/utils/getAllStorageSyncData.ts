@@ -8,6 +8,7 @@ function getAllStorageSyncData() {
   return new Promise((resolve, reject) => {
     // Asynchronously fetch all data from storage.sync.
     chrome.storage.sync.get(null, (items) => {
+      console.log('GETTING FUSION DATA', items)
       // Pass any observed errors down the promise chain.
       if (chrome.runtime.lastError) {
         return reject(chrome.runtime.lastError);

@@ -44,8 +44,8 @@ const App = () => {
     chrome.runtime.sendMessage({ type: 'from-popup' }, (response) => {
       setAllData(prevState => ({
         // setting data via call and response
-        data: { ...prevState.data, ...response.data }, 
-        error: prevState.error, 
+        data: { ...prevState.data, ...response.data },
+        error: prevState.error,
         status: prevState.status
       }))
     });
@@ -83,7 +83,7 @@ const App = () => {
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link eventKey="alerts" onClick={() => setActiveTab('alerts')}>
-                    Alerts <Badge variant="danger">2</Badge>
+                    Alerts <Badge variant="danger">1</Badge>
                     <span className="sr-only">unchecked alerts</span>
                   </Nav.Link>
                 </Nav.Item>
