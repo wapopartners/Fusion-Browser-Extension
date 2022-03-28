@@ -2,33 +2,28 @@
 // send test message of the extension to the engine?
 window.postMessage({ type: 'fusion-extension' });
 
+function sendAndSaveObject(objectToSave) {
+  chrome.runtime.sendMessage({ data: objectToSave, type: 'big-data-save' })
+}
+
 // input object with keys and values
 // saves each key and value individually to storage
 // checks which one is too big for extension limit
 function saveKeyValueEntryArray(objectToSave) {
-  // keeping track of what's not saved
-  // const allSavedKeys = [];
-
   Object.entries(objectToSave).forEach((entry) => {
     const [key, value] = entry;
 
     if (
       JSON.stringify(value).length >= chrome.storage.sync.QUOTA_BYTES_PER_ITEM
     ) {
-      // todo: may want to pass these back in a save as nested?
-      console.log(`${key} is too big: ${JSON.stringify(value)}`);
+      sendAndSaveObject({ [key]: value })
     } else {
       chrome.storage.sync.set({ [key]: value });
-      // allSavedKeys.push(key)
     }
   });
-
-  // console.log(allSavedKeys, 'all saved keys')
 }
 
 function saveFusionData(fusionData) {
-  console.log('received message from engine', fusionData);
-
   const {
     globalContent,
     globalContentConfig,
@@ -48,11 +43,15 @@ function saveFusionData(fusionData) {
   chrome.storage.sync.set({ spaEnabled });
 
   saveKeyValueEntryArray(globalContentConfig);
-  saveKeyValueEntryArray(globalContent);
   saveKeyValueEntryArray(tree);
   saveKeyValueEntryArray(siteProperties);
-  saveKeyValueEntryArray(contentCache);
   saveKeyValueEntryArray(environment);
+
+  // content cache, even separated by key, is too big to save with item quota
+  // also, these keys could have any values pretty much
+  // we can destructure them in the table if necessary
+  sendAndSaveObject({ contentCache });
+  sendAndSaveObject({ globalContent });
 }
 
 let receivedData = false;
