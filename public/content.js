@@ -52,17 +52,24 @@ function saveFusionData(fusionData) {
   saveKeyValueEntryArray(tree);
   saveKeyValueEntryArray(siteProperties);
   saveKeyValueEntryArray(contentCache);
-  saveKeyValueEntryArray(environment)
+  saveKeyValueEntryArray(environment);
 }
 
-window.addEventListener(
-  'message',
-  (event) => {
-    // todo: this seems to be re-running multiple times in console
-    // console.log('event listener added in content.js')
-    if (event.data.type === 'engine-msg') {
-      saveFusionData(event.data);
-    }
-  },
-  false
-);
+let receivedData = false;
+setTimeout(() => {
+  if (!receivedData) {
+    console.log('Did not receive data')
+  }
+}, 1000);
+
+const processFusionEvent = (event) => {
+  // todo: this seems to be re-running multiple times in console
+  // console.log('event listener added in content.js')
+  if (event.data.type === 'engine-msg') {
+    receivedData = true;
+    chrome.storage.sync.set({ data: true });
+    saveFusionData(event.data);
+  }
+};
+
+window.addEventListener('message', (event) => processFusionEvent(event));
