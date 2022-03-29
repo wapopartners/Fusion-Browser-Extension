@@ -3,7 +3,7 @@
 window.postMessage({ type: 'fusion-extension' });
 
 function sendAndSaveObject(objectToSave) {
-  chrome.runtime.sendMessage({ data: objectToSave, type: 'big-data-save' })
+  chrome.runtime.sendMessage({ data: objectToSave, type: 'big-data-save' });
 }
 
 // input object with keys and values
@@ -16,7 +16,7 @@ function saveKeyValueEntryArray(objectToSave) {
     if (
       JSON.stringify(value).length >= chrome.storage.sync.QUOTA_BYTES_PER_ITEM
     ) {
-      sendAndSaveObject({ [key]: value })
+      sendAndSaveObject({ [key]: value });
     } else {
       chrome.storage.sync.set({ [key]: value });
     }
@@ -57,7 +57,7 @@ function saveFusionData(fusionData) {
 let receivedData = false;
 setTimeout(() => {
   if (!receivedData) {
-    console.log('Did not receive data')
+    console.log('Fusion Browser Extension: Did not receive data');
   }
 }, 1000);
 
