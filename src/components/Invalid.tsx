@@ -22,10 +22,8 @@ const Invalid = () => (
     <ExclamationTriangleFill style={styles.icon} />
     <h3 style={styles.header}>No data available</h3>
     <p style={styles.text}>
-      The current page is either not a Fusion page, or it's using an
-      incompatible Fusion version with the Fusion Browser Extension.<br></br>
-      <br></br>To use the Fusion Browser Extension the page needs to use Fusion
-      Engine 3.3.0 or higher
+      The current page is not compatible with the Fusion Browser Extension.
+      The extension requires a Fusion Engine version of 3.3.0 or greater.
     </p>
   </div>
 );
