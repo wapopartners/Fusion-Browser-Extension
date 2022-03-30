@@ -3,7 +3,7 @@
 window.postMessage({ type: 'fusion-extension' });
 
 function sendAndSaveObject(objectToSave) {
-  chrome.runtime.sendMessage({ data: objectToSave, type: 'big-data-save' })
+  chrome.runtime.sendMessage({ data: objectToSave, type: 'big-data-save' });
 }
 
 // input object with keys and values
@@ -16,7 +16,7 @@ function saveKeyValueEntryArray(objectToSave) {
     if (
       JSON.stringify(value).length >= chrome.storage.sync.QUOTA_BYTES_PER_ITEM
     ) {
-      sendAndSaveObject({ [key]: value })
+      sendAndSaveObject({ [key]: value });
     } else {
       chrome.storage.sync.set({ [key]: value });
     }
@@ -47,7 +47,6 @@ function saveFusionData(fusionData) {
   saveKeyValueEntryArray(siteProperties);
   saveKeyValueEntryArray(environment);
 
-
   // content cache, even separated by key, is too big to save with item quota
   // also, these keys could have any values pretty much
   // we can destructure them in the table if necessary
@@ -55,14 +54,21 @@ function saveFusionData(fusionData) {
   sendAndSaveObject({ globalContent });
 }
 
-window.addEventListener(
-  'message',
-  (event) => {
-    // todo: this seems to be re-running multiple times in console
-    // console.log('event listener added in content.js')
-    if (event.data.type === 'engine-msg') {
-      saveFusionData(event.data);
-    }
-  },
-  false
-);
+let receivedData = false;
+setTimeout(() => {
+  if (!receivedData) {
+    console.log('Fusion Browser Extension: Did not receive data');
+  }
+}, 1000);
+
+const processFusionEvent = (event) => {
+  // todo: this seems to be re-running multiple times in console
+  // console.log('event listener added in content.js')
+  if (event.data.type === 'engine-msg') {
+    receivedData = true;
+    chrome.storage.sync.set({ data: true });
+    saveFusionData(event.data);
+  }
+};
+
+window.addEventListener('message', (event) => processFusionEvent(event));
