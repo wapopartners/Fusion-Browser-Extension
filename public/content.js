@@ -55,11 +55,6 @@ function saveFusionData(fusionData) {
 }
 
 let receivedData = false;
-setTimeout(() => {
-  if (!receivedData) {
-    console.log('Fusion Browser Extension: Did not receive data');
-  }
-}, 1000);
 
 const processFusionEvent = (event) => {
   // todo: this seems to be re-running multiple times in console
