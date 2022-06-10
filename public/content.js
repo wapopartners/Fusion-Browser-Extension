@@ -54,13 +54,10 @@ function saveFusionData(fusionData) {
   sendAndSaveObject({ globalContent });
 }
 
-let receivedData = false;
-
 const processFusionEvent = (event) => {
   // todo: this seems to be re-running multiple times in console
   // console.log('event listener added in content.js')
   if (event.data.type === 'engine-msg') {
-    receivedData = true;
     chrome.storage.sync.set({ data: true });
     saveFusionData(event.data);
   }
