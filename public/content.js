@@ -54,6 +54,18 @@ function saveFusionData(fusionData) {
   sendAndSaveObject({ globalContent });
 }
 
+chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
+  const url = tabs[0].url;
+  if (url.indexOf('localhost') > -1) {
+    let receivedData = false;
+    setTimeout(() => {
+      if (!receivedData) {
+        console.log('Fusion Browser Extension: Did not receive data');
+      }
+    }, 1000);
+  }
+});
+
 const processFusionEvent = (event) => {
   // todo: this seems to be re-running multiple times in console
   // console.log('event listener added in content.js')
