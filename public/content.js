@@ -54,18 +54,20 @@ function saveFusionData(fusionData) {
   sendAndSaveObject({ globalContent });
 }
 
-let receivedData = false;
-setTimeout(() => {
-  if (!receivedData) {
-    console.log('Fusion Browser Extension: Did not receive data');
-  }
-}, 1000);
+// For devs debugging, uncomment below to see if the browser is working as expected. Make sure to uncomment below as well the received data being true if working.
+// let receivedData = false;
+// setTimeout(() => {
+//   if (!receivedData) {
+//     console.log('Fusion Browser Extension: Did not receive data');
+//   }
+// }, 1000);
 
 const processFusionEvent = (event) => {
   // todo: this seems to be re-running multiple times in console
   // console.log('event listener added in content.js')
   if (event.data.type === 'engine-msg') {
-    receivedData = true;
+    // If debugging received data, uncomment below
+    // receivedData = true;
     chrome.storage.sync.set({ data: true });
     saveFusionData(event.data);
   }
