@@ -29,18 +29,28 @@ You'll need Fusion version `3.3.0` or higher to use it
 
 1. Login to your Google Workspace (your washpost email address) account through Okta
 2. Go to Chrome Web Store and click gear and click Developer Console:
-   Note: Only PB-Engine team members have access to the extension. If you don’t have access and don’t have other extensions, you may be prompted to “enroll” for the Chrome Web Store Developer program. Don’t enroll!
-   ![Click Developer Dashboard](blob:https://arcpublishing.atlassian.net/ed453379-653b-431c-9b54-6317806deba7#media-blob-url=true&id=b5e601eb-c142-4705-9af0-a2c0fdedddfb&collection=contentId-3183083568&contextId=3183083568&height=326&width=570&alt=)
+   
+Note: Only PB-Engine team members have access to the extension. If you don’t have access and don’t have other extensions, you may be prompted to “enroll” for the Chrome Web Store Developer program. Don’t enroll!
+
+![Click Developer Dashboard](./docs/click-dev-dashboard.jpeg)
+
 3. You will see the list of extensions
-   ![List of extensions](https://api.media.atlassian.com/file/ddffd906-7241-45f7-8af3-4ea4566cf21b/image?allowAnimated=true&client=d59aa2cc-b6e5-443e-8442-e5e36055d598&collection=contentId-3183083568&height=0&max-age=2592000&mode=full-fit&token=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJkNTlhYTJjYy1iNmU1LTQ0M2UtODQ0Mi1lNWUzNjA1NWQ1OTgiLCJhY2Nlc3MiOnsidXJuOmZpbGVzdG9yZTpjb2xsZWN0aW9uOmNvbnRlbnRJZC0zMTgzMDgzNTY4IjpbInJlYWQiXX0sImV4cCI6MTY1NTk4NzAyNywibmJmIjoxNjU1OTg0MTQ3fQ.latsQ86XYtvhrPHB2TVkWBcvPVpiQVbmHxNwn9Mm4O4&width=0)
+
+![List of extensions](./docs/extensions-list.webp)
+
 4. Click “Arc Fusion” extension.
 5. Click “Package” from the left sidebar navigation. Then Click to “Upload new package” button.
-   ![Click Package](blob:https://arcpublishing.atlassian.net/5e289acb-0bc0-4b04-bfa5-d1fe13dc4b13#media-blob-url=true&id=9691494b-a084-4604-bcf3-3df18bcc83b9&collection=contentId-3183083568&contextId=3183083568&height=716&width=1609&alt=)
+
+![Click Package](./docs/click-package.jpeg)
+
 6. Run `npm run build` to generate your static extension build
 7. Select the `/build` directory and compress it to create a zip file.
 8. Upload the new versioned zip package. Most of the package details will be defined in the manifest file within the zip package.
-   Note: Make sure you are bumping up the version in every package we submit.
-   ![Upload new package](blob:https://arcpublishing.atlassian.net/c70da1f9-2d6c-4941-bc7f-d0468d3f69fd#media-blob-url=true&id=b6b72f2f-4b39-4ba0-a322-80e3c4ff6b02&collection=contentId-3183083568&contextId=3183083568&height=377&width=684&alt=)
+
+Note: Make sure you are bumping up the version in every package we submit.
+
+![Upload new package](./docs/upload-package.jpeg)
+
 9. After the package is uploaded, save and submit for approval.
 
 ### References:
