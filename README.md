@@ -57,3 +57,4 @@ Note: Make sure you are bumping up the version in every package we submit.
 
 - [Update your Chrome Web Store item - Chrome Developers](https://developer.chrome.com/docs/webstore/update/)
 - [Publish in the Chrome Web Store - Chrome Developers](https://developer.chrome.com/docs/webstore/publish/)
+
